@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Replaced header with sidebar navigation -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
     
     <aside class="sidebar" id="sidebar">
@@ -18,23 +19,23 @@
         <nav class="sidebar-nav">
             <ul>
                 <li><a href="dashboard.html">
-                    <span class="nav-icon">📊</span>Dashboard
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="analytics-outline"></ion-icon></span>Dashboard
+                    </a></li>
                 <li><a href="students.html">
-                    <span class="nav-icon">👥</span>Students
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="people-outline"></ion-icon></span>Students
+                    </a></li>
                 <li><a href="subjects.html">
-                    <span class="nav-icon">📚</span>Subjects
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="book-outline"></ion-icon></span>Subjects
+                    </a></li>
                 <li><a href="grades.html" class="active">
-                    <span class="nav-icon">📝</span>Grades
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="ribbon-outline"></ion-icon></span>Grades
+                    </a></li>
                 <li><a href="analytics.html">
-                    <span class="nav-icon">📈</span>Analytics
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="podium-outline"></ion-icon></span>Analytics
+                    </a></li>
                 <li><a href="#" onclick="logout()">
-                    <span class="nav-icon">🚪</span>Logout
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="exit-outline"></ion-icon></span>Logout
+                    </a></li>
             </ul>
         </nav>
     </aside>
@@ -76,7 +77,7 @@
                     
                     <div class="form-group">
                         <label for="marks" class="form-label">Marks (0-100)</label>
-                        <input type="number" id="marks" name="marks" class="form-input" min="0" max="100" step="0.01" required>
+                        <input type="number" id="marks" name="marks" class="form-input" min="0" max="100" step="0.01" required oninput="if(this.value>100)this.value=100;if(this.value<0)this.value=0;">
                     </div>
                     
                     <div class="form-group">
@@ -186,7 +187,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editMarks" class="form-label">Marks (0-100)</label>
-                        <input type="number" id="editMarks" name="marks" class="form-input" min="0" max="100" step="0.01" required>
+                        <input type="number" id="editMarks" name="marks" class="form-input" min="0" max="100" step="0.01" required oninput="if(this.value>100)this.value=100;if(this.value<0)this.value=0;">
                     </div>
                     <div class="form-group">
                         <label for="editExamType" class="form-label">Exam Type</label>

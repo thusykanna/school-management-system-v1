@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Management System - Login</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-card">
-            <h1 class="login-title">School Management System</h1>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
-            </form>
-            <div id="loginMessage" class="mt-2 text-center" style="color: var(--danger); display: none;"></div>
+    <div class="login-flex-container">
+        <div class="login-image-side">
+            <img src="images/login.png" alt="Login" class="login-image" />
+        </div>
+        <div class="login-form-side">
+            <div class="login-card">
+                <h1 class="login-title">School Management System</h1>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                </form>
+                <div id="loginMessage" class="mt-2 text-center" style="color: var(--danger); display: none;"></div>
+            </div>
         </div>
     </div>
 

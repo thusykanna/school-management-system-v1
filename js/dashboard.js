@@ -12,7 +12,7 @@ class Dashboard {
 
       if (result.success) {
         this.updateStatistics(result.stats)
-        this.loadRecentActivities()
+        this.loadRecentActivities(result.activities)
       }
     } catch (error) {
       console.error("Error loading dashboard data:", error)
@@ -26,16 +26,15 @@ class Dashboard {
     document.getElementById("averageGrade").textContent = stats.average_grade || "N/A"
   }
 
-  loadRecentActivities() {
+  loadRecentActivities(activities) {
     const activitiesDiv = document.getElementById("recentActivities")
-    activitiesDiv.innerHTML = `
-      <div class="form-group">
-        <p>• New student John Doe added to Grade 10</p>
-        <p>• Mathematics marks updated for Grade 11</p>
-        <p>• 5 students enrolled in Science subject</p>
-        <p>• Grade reports generated for all classes</p>
-      </div>
-    `
+    if (activities && activities.length > 0) {
+      activitiesDiv.innerHTML = `<div class="form-group">` +
+        activities.map(a => `<p>• ${a.description} <span style='color:#aaa;font-size:0.9em;'>(${new Date(a.created_at).toLocaleString()})</span></p>`).join('') +
+        `</div>`
+    } else {
+      activitiesDiv.innerHTML = `<div class="form-group"><p>No recent activities.</p></div>`
+    }
   }
 }
 

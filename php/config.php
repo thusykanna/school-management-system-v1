@@ -4,7 +4,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', ''); // Default XAMPP MySQL password is empty
-define('DB_NAME', 'school_management'); // Make sure this matches your imported database name
+define('DB_NAME', 'school_management_system'); // Make sure this matches your imported database name
 
 // Create database connection using PDO
 function getDBConnection() {

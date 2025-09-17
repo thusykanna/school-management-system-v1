@@ -38,7 +38,17 @@ try {
         $stats['average_grade'] = 'N/A';
     }
     
-    echo json_encode(['success' => true, 'stats' => $stats]);
+    // Fetch recent activities (example: from an 'activity_log' table)
+    $activities = [];
+    $stmt = $pdo->query("SELECT description, created_at FROM activity_log ORDER BY created_at DESC LIMIT 4");
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $activities[] = [
+            'description' => $row['description'],
+            'created_at' => $row['created_at']
+        ];
+    }
+
+    echo json_encode(['success' => true, 'stats' => $stats, 'activities' => $activities]);
     
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => 'Server error']);

@@ -110,6 +110,17 @@ try {
                 ]);
                 
                 if ($result) {
+                    // Log activity with names
+                    $studentName = '';
+                    $subjectName = '';
+                    $stmtStudent = $pdo->prepare("SELECT CONCAT(first_name, ' ', last_name) as name FROM students WHERE id = ?");
+                    $stmtStudent->execute([$_POST['student_id']]);
+                    if ($row = $stmtStudent->fetch()) $studentName = $row['name'];
+                    $stmtSubject = $pdo->prepare("SELECT subject_name FROM subjects WHERE id = ?");
+                    $stmtSubject->execute([$_POST['subject_id']]);
+                    if ($row = $stmtSubject->fetch()) $subjectName = $row['subject_name'];
+                    $desc = "$studentName enrolled in $subjectName";
+                    $pdo->prepare("INSERT INTO activity_log (description) VALUES (?)")->execute([$desc]);
                     echo json_encode(['success' => true, 'message' => 'Student enrolled successfully']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Failed to enroll student']);

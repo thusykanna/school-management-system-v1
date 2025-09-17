@@ -304,12 +304,35 @@ body {
 }
 
 /* Login Page Styles */
-.login-container {
+
+/* Login Page Flex Layout */
+.login-flex-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+}
+
+.login-image-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  min-width: 0;
+}
+
+.login-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 24px;
+}
+
+.login-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
 }
 
 .login-card {
@@ -412,6 +435,21 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 900px) {
+  .login-flex-container {
+    flex-direction: column;
+  }
+  .login-image-side, .login-form-side {
+    flex: unset;
+    width: 100%;
+    min-height: 250px;
+    max-height: 50vh;
+  }
+  .login-image {
+    max-height: 40vh;
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
@@ -445,6 +483,9 @@ body {
 
   .page-title {
     font-size: 2rem;
+  }
+  .login-card {
+    padding: 2rem;
   }
 }
 

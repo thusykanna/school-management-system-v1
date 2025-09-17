@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
     
     <aside class="sidebar" id="sidebar">
@@ -17,23 +19,23 @@
         <nav class="sidebar-nav">
             <ul>
                 <li><a href="dashboard.html">
-                    <span class="nav-icon">📊</span>Dashboard
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="analytics-outline"></ion-icon></span>Dashboard
+                    </a></li>
                 <li><a href="students.html" class="active">
-                    <span class="nav-icon">👥</span>Students
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="people-outline"></ion-icon></span>Students
+                    </a></li>
                 <li><a href="subjects.html">
-                    <span class="nav-icon">📚</span>Subjects
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="book-outline"></ion-icon></span>Subjects
+                    </a></li>
                 <li><a href="grades.html">
-                    <span class="nav-icon">📝</span>Grades
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="ribbon-outline"></ion-icon></span>Grades
+                    </a></li>
                 <li><a href="analytics.html">
-                    <span class="nav-icon">📈</span>Analytics
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="podium-outline"></ion-icon></span>Analytics
+                    </a></li>
                 <li><a href="#" onclick="logout()">
-                    <span class="nav-icon">🚪</span>Logout
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="exit-outline"></ion-icon></span>Logout
+                    </a></li>
             </ul>
         </nav>
     </aside>
@@ -93,6 +95,21 @@
                 <button class="close-btn" onclick="closeStudentModal()">&times;</button>
             </div>
             <form id="studentForm">
+                                <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var form = document.getElementById('studentForm');
+                                    if(form) {
+                                        form.addEventListener('submit', function(e) {
+                                            var gradeLevel = document.getElementById('gradeLevel');
+                                            if(gradeLevel && !gradeLevel.value) {
+                                                alert('Please select a grade level.');
+                                                gradeLevel.focus();
+                                                e.preventDefault();
+                                            }
+                                        });
+                                    }
+                                });
+                                </script>
                 <input type="hidden" id="studentId" name="studentId">
                 <div class="form-group">
                     <label for="studentIdInput" class="form-label">Student ID</label>
@@ -108,19 +125,19 @@
                 </div>
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" name="email" class="form-input">
+                    <input type="email" id="email" name="email" class="form-input" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Enter a valid email address" required>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="form-label">Phone</label>
-                    <input type="tel" id="phone" name="phone" class="form-input">
+                    <input type="tel" id="phone" name="phone" class="form-input" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" title="Enter a 10-digit phone number" required oninput="if(this.value.length>10)this.value=this.value.slice(0,10);">
                 </div>
                 <div class="form-group">
                     <label for="address" class="form-label">Address</label>
-                    <textarea id="address" name="address" class="form-textarea" rows="3"></textarea>
+                    <textarea id="address" name="address" class="form-textarea" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="dateOfBirth" class="form-label">Date of Birth</label>
-                    <input type="date" id="dateOfBirth" name="date_of_birth" class="form-input">
+                    <input type="date" id="dateOfBirth" name="date_of_birth" class="form-input" required max="" onfocus="this.max=new Date().toISOString().split('T')[0]">
                 </div>
                 <div class="form-group">
                     <label for="gradeLevel" class="form-label">Grade Level</label>

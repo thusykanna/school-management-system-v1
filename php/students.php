@@ -63,6 +63,9 @@ try {
                 ]);
                 
                 if ($result) {
+                    // Log activity
+                    $desc = "Student {$_POST['first_name']} {$_POST['last_name']} added to Grade {$_POST['grade_level']}";
+                    $pdo->prepare("INSERT INTO activity_log (description) VALUES (?)")->execute([$desc]);
                     echo json_encode(['success' => true, 'message' => 'Student created successfully']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Failed to create student']);
@@ -90,6 +93,9 @@ try {
                 ]);
                 
                 if ($result) {
+                    // Log activity
+                    $desc = "Student {$_POST['first_name']} {$_POST['last_name']} updated in Grade {$_POST['grade_level']}";
+                    $pdo->prepare("INSERT INTO activity_log (description) VALUES (?)")->execute([$desc]);
                     echo json_encode(['success' => true, 'message' => 'Student updated successfully']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Failed to update student']);
@@ -104,6 +110,9 @@ try {
                 $result = $stmt->execute([$_GET['id']]);
                 
                 if ($result) {
+                    // Log activity
+                    $desc = "Student with ID {$_GET['id']} deleted from system";
+                    $pdo->prepare("INSERT INTO activity_log (description) VALUES (?)")->execute([$desc]);
                     echo json_encode(['success' => true, 'message' => 'Student deleted successfully']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Failed to delete student']);

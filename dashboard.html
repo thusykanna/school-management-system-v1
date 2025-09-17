@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - School Management System</title>
+    <title> Dashboard - School Management System</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
-    
+
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-logo">School Management</div>
@@ -17,23 +21,23 @@
         <nav class="sidebar-nav">
             <ul>
                 <li><a href="dashboard.html" class="active">
-                    <span class="nav-icon">📊</span>Dashboard
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="analytics-outline"></ion-icon></span>Dashboard
+                    </a></li>
                 <li><a href="students.html">
-                    <span class="nav-icon">👥</span>Students
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="people-outline"></ion-icon></span>Students
+                    </a></li>
                 <li><a href="subjects.html">
-                    <span class="nav-icon">📚</span>Subjects
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="book-outline"></ion-icon></span>Subjects
+                    </a></li>
                 <li><a href="grades.html">
-                    <span class="nav-icon">📝</span>Grades
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="ribbon-outline"></ion-icon></span>Grades
+                    </a></li>
                 <li><a href="analytics.html">
-                    <span class="nav-icon">📈</span>Analytics
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="podium-outline"></ion-icon></span>Analytics
+                    </a></li>
                 <li><a href="#" onclick="logout()">
-                    <span class="nav-icon">🚪</span>Logout
-                </a></li>
+                        <span class="nav-icon"><ion-icon name="exit-outline"></ion-icon></span>Logout
+                    </a></li>
             </ul>
         </nav>
     </aside>
@@ -55,7 +59,7 @@
                     <h2 class="card-title">Dashboard Overview</h2>
                     <p>Welcome to the School Management System</p>
                 </div>
-                
+
                 <div class="dashboard-grid">
                     <div class="stat-card">
                         <div class="stat-number" id="totalStudents">0</div>
@@ -95,4 +99,5 @@
         }
     </script>
 </body>
+
 </html>

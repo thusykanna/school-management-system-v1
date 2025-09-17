@@ -1,8 +1,8 @@
 -- School Management System Database Schema
 -- Created for XAMPP/MySQL environment
 
-CREATE DATABASE IF NOT EXISTS school_management;
-USE school_management;
+CREATE DATABASE IF NOT EXISTS school_management_system;
+USE school_management_system;
 
 -- Teachers table for authentication
 CREATE TABLE teachers (
@@ -62,6 +62,13 @@ CREATE TABLE marks (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
     FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
+);
+
+-- Activity log table
+CREATE TABLE activity_log (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Insert default teacher account

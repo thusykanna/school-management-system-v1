@@ -154,6 +154,17 @@ try {
                 ]);
                 
                 if ($result) {
+                    // Log activity with names
+                    $studentName = '';
+                    $subjectName = '';
+                    $stmtStudent = $pdo->prepare("SELECT CONCAT(first_name, ' ', last_name) as name FROM students WHERE id = ?");
+                    $stmtStudent->execute([$_POST['student_id']]);
+                    if ($row = $stmtStudent->fetch()) $studentName = $row['name'];
+                    $stmtSubject = $pdo->prepare("SELECT subject_name FROM subjects WHERE id = ?");
+                    $stmtSubject->execute([$_POST['subject_id']]);
+                    if ($row = $stmtSubject->fetch()) $subjectName = $row['subject_name'];
+                    $desc = "Marks added for $studentName in $subjectName ({$_POST['marks']} marks)";
+                    $pdo->prepare("INSERT INTO activity_log (description) VALUES (?)")->execute([$desc]);
                     echo json_encode(['success' => true, 'message' => 'Marks saved successfully']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Failed to save marks']);
@@ -175,6 +186,17 @@ try {
                 ]);
                 
                 if ($result) {
+                    // Log activity with names
+                    $studentName = '';
+                    $subjectName = '';
+                    $stmtStudent = $pdo->prepare("SELECT CONCAT(first_name, ' ', last_name) as name FROM students WHERE id = ?");
+                    $stmtStudent->execute([$_POST['student_id']]);
+                    if ($row = $stmtStudent->fetch()) $studentName = $row['name'];
+                    $stmtSubject = $pdo->prepare("SELECT subject_name FROM subjects WHERE id = ?");
+                    $stmtSubject->execute([$_POST['subject_id']]);
+                    if ($row = $stmtSubject->fetch()) $subjectName = $row['subject_name'];
+                    $desc = "Marks updated for $studentName in $subjectName ({$_POST['marks']} marks)";
+                    $pdo->prepare("INSERT INTO activity_log (description) VALUES (?)")->execute([$desc]);
                     echo json_encode(['success' => true, 'message' => 'Marks updated successfully']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Failed to update marks']);
@@ -189,6 +211,9 @@ try {
                 $result = $stmt->execute([$_GET['id']]);
                 
                 if ($result) {
+                    // Log activity
+                    $desc = "Marks deleted for marks ID {$_GET['id']}";
+                    $pdo->prepare("INSERT INTO activity_log (description) VALUES (?)")->execute([$desc]);
                     echo json_encode(['success' => true, 'message' => 'Marks deleted successfully']);
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Failed to delete marks']);
