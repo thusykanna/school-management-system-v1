@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System - Signup</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="login-flex-container">
+        <div class="login-image-side">
+            <img src="images/login.png" alt="Signup" class="login-image" />
+        </div>
+        <div class="login-form-side">
+            <div class="login-card">
+                <h1 class="login-title">School Management System</h1>
+                <form id="signupForm" method="POST" action="php/signup.php" autocomplete="off">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username" required minlength="4" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="full_name" class="form-label">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" class="form-input" placeholder="Enter your full name" required maxlength="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+                </form>
+                <div class="mt-2 text-center">
+                    <a href="index.html">Already have an account? Login</a>
+                </div>
+                <div id="signupMessage" class="mt-2 text-center"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Toast function
+    function showToast(message, isSuccess) {
+        let toast = document.createElement('div');
+        toast.textContent = message;
+        toast.style.position = 'fixed';
+        toast.style.top = '30px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.background = isSuccess ? 'var(--success)' : 'var(--danger)';
+        toast.style.color = 'white';
+        toast.style.padding = '1rem 2rem';
+        toast.style.borderRadius = '8px';
+        toast.style.fontWeight = 'bold';
+        toast.style.zIndex = 9999;
+        toast.style.boxShadow = '0 4px 16px rgba(0,0,0,0.15)';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 2500);
+    }
+
+    document.getElementById('signupForm').onsubmit = function(e) {
+        e.preventDefault();
+        var form = e.target;
+        var password = document.getElementById('password').value;
+        if (password.length < 6) {
+            showToast('Password must be at least 6 characters.', false);
+            return;
+        }
+        var formData = new FormData(form);
+        fetch('php/signup.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                showToast(data.message, true);
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1800);
+            } else {
+                showToast(data.message, false);
+            }
+        })
+        .catch(() => {
+            showToast('Network error. Please try again.', false);
+        });
+    };
+    </script>
+</body>
+</html>
