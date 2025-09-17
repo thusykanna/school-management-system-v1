@@ -21,63 +21,138 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, var(--dark-blue) 0%, var(--black) 100%);
-  color: var(--white);
+  /* Changed background from dark gradient to white */
+  background: var(--white);
+  /* Changed text color from white to black for readability on white background */
+  color: var(--black);
   min-height: 100vh;
   line-height: 1.6;
-}
-
-/* Header Styles */
-.header {
-  background: rgba(146, 77, 235, 0.1);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(146, 77, 235, 0.3);
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--primary-purple);
-}
-
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-}
-
-.nav-menu a {
+/* Sidebar Styles */
+.sidebar {
+  width: 280px;
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-blue) 100%);
   color: var(--white);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-  background: var(--primary-purple);
-  transform: translateY(-2px);
+.sidebar-header {
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin: 0.5rem 0;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-left-color: var(--white);
+  transform: translateX(5px);
+}
+
+.sidebar-nav .nav-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 1rem;
+  opacity: 0.8;
+}
+
+/* Main Content Area */
+.main-content {
+  margin-left: 280px;
+  flex: 1;
+  min-height: 100vh;
+  background: var(--white);
+}
+
+.page-header {
+  background: linear-gradient(135deg, rgba(146, 77, 235, 0.05) 0%, rgba(26, 26, 46, 0.05) 100%);
+  padding: 3rem 2rem 2rem;
+  border-bottom: 1px solid rgba(146, 77, 235, 0.1);
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-purple);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 400;
+}
+
+.page-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.breadcrumb-separator {
+  color: var(--primary-purple);
 }
 
 /* Container Styles */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: none;
+  margin: 0;
+  padding: 0 2rem 2rem;
 }
 
 /* Card Styles */
@@ -111,7 +186,8 @@ body {
 .form-label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--white);
+  /* Changed label color from white to black for visibility on white background */
+  color: var(--black);
   font-weight: 500;
 }
 
@@ -120,10 +196,12 @@ body {
 .form-textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  /* Changed input background to light gray for better visibility on white background */
+  background: var(--light-gray);
   border: 1px solid rgba(146, 77, 235, 0.3);
   border-radius: 8px;
-  color: var(--white);
+  /* Changed input text color to black */
+  color: var(--black);
   font-size: 1rem;
   transition: all 0.3s ease;
 }
@@ -137,7 +215,8 @@ body {
 }
 
 .form-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  /* Changed placeholder color to dark gray for visibility */
+  color: rgba(0, 0, 0, 0.6);
 }
 
 /* Button Styles */
@@ -197,7 +276,8 @@ body {
 .table-container {
   overflow-x: auto;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  /* Changed table container background to light gray */
+  background: var(--light-gray);
 }
 
 .table {
@@ -214,7 +294,8 @@ body {
 
 .table th {
   background: rgba(146, 77, 235, 0.2);
-  color: var(--white);
+  /* Changed table header text to black */
+  color: var(--black);
   font-weight: 600;
 }
 
@@ -234,12 +315,13 @@ body {
 .login-card {
   width: 100%;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.05);
+  /* Changed login card background to light gray with subtle border */
+  background: var(--light-gray);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(146, 77, 235, 0.3);
   border-radius: 20px;
   padding: 3rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .login-title {
@@ -273,7 +355,8 @@ body {
 }
 
 .stat-label {
-  color: var(--white);
+  /* Changed stat label color to black */
+  color: var(--black);
   font-size: 1rem;
 }
 
@@ -296,7 +379,8 @@ body {
 }
 
 .modal-content {
-  background: var(--dark-blue);
+  /* Changed modal background to white */
+  background: var(--white);
   border: 1px solid rgba(146, 77, 235, 0.3);
   border-radius: 16px;
   padding: 2rem;
@@ -321,30 +405,51 @@ body {
 .close-btn {
   background: none;
   border: none;
-  color: var(--white);
+  /* Changed close button color to black */
+  color: var(--black);
   font-size: 1.5rem;
   cursor: pointer;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: 1rem;
+  .sidebar {
+    transform: translateX(-100%);
   }
 
-  .nav-menu {
-    flex-wrap: wrap;
-    justify-content: center;
+  .sidebar.mobile-open {
+    transform: translateX(0);
   }
 
-  .container {
-    padding: 1rem;
+  .main-content {
+    margin-left: 0;
   }
 
-  .dashboard-grid {
-    grid-template-columns: 1fr;
+  .mobile-menu-btn {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background: var(--primary-purple);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
   }
+
+  .page-header {
+    padding-left: 4rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+}
+
+.mobile-menu-btn {
+  display: none;
 }
 
 /* Utility Classes */

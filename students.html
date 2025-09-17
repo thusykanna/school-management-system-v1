@@ -7,56 +7,83 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">School Management System</div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="students.html" class="active">Students</a></li>
-                    <li><a href="subjects.html">Subjects</a></li>
-                    <li><a href="grades.html">Grades</a></li>
-                    <li><a href="analytics.html">Analytics</a></li>
-                    <li><a href="#" onclick="logout()">Logout</a></li>
-                </ul>
-            </nav>
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
+    
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">School Management</div>
+            <div class="sidebar-subtitle">Education System</div>
         </div>
-    </header>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="dashboard.html">
+                    <span class="nav-icon">📊</span>Dashboard
+                </a></li>
+                <li><a href="students.html" class="active">
+                    <span class="nav-icon">👥</span>Students
+                </a></li>
+                <li><a href="subjects.html">
+                    <span class="nav-icon">📚</span>Subjects
+                </a></li>
+                <li><a href="grades.html">
+                    <span class="nav-icon">📝</span>Grades
+                </a></li>
+                <li><a href="analytics.html">
+                    <span class="nav-icon">📈</span>Analytics
+                </a></li>
+                <li><a href="#" onclick="logout()">
+                    <span class="nav-icon">🚪</span>Logout
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <div class="flex justify-between align-center">
-                    <h2 class="card-title">Student Management</h2>
-                    <button class="btn btn-primary" onclick="openAddStudentModal()">Add New Student</button>
+    <main class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Student Management</h1>
+            <p class="page-subtitle">Manage student records, enrollment, and personal information</p>
+            <div class="page-breadcrumb">
+                <span>Home</span>
+                <span class="breadcrumb-separator">›</span>
+                <span>Students</span>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h2 class="card-title">Student Management</h2>
+                        <button class="btn btn-primary" onclick="openAddStudentModal()">Add New Student</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="searchInput" class="form-input" placeholder="Search students by name, ID, or email..." onkeyup="searchStudents()">
+                </div>
+
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Grade Level</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <tr>
+                                <td colspan="6" class="text-center">Loading students...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            
-            <div class="form-group">
-                <input type="text" id="searchInput" class="form-input" placeholder="Search students by name, ID, or email..." onkeyup="searchStudents()">
-            </div>
-
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Grade Level</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="studentsTableBody">
-                        <tr>
-                            <td colspan="6" class="text-center">Loading students...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
-    </div>
+    </main>
 
     <!-- Add/Edit Student Modal -->
     <div id="studentModal" class="modal">
@@ -128,5 +155,10 @@
 
     <script src="js/auth.js"></script>
     <script src="js/students.js"></script>
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+    </script>
 </body>
 </html>

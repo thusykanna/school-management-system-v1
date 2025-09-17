@@ -7,195 +7,229 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">School Management System</div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="students.html">Students</a></li>
-                    <li><a href="subjects.html">Subjects</a></li>
-                    <li><a href="grades.html" class="active">Grades</a></li>
-                    <li><a href="analytics.html">Analytics</a></li>
-                    <li><a href="#" onclick="logout()">Logout</a></li>
-                </ul>
-            </nav>
+    <!-- Replaced header with sidebar navigation -->
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
+    
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">School Management</div>
+            <div class="sidebar-subtitle">Education System</div>
         </div>
-    </header>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="dashboard.html">
+                    <span class="nav-icon">📊</span>Dashboard
+                </a></li>
+                <li><a href="students.html">
+                    <span class="nav-icon">👥</span>Students
+                </a></li>
+                <li><a href="subjects.html">
+                    <span class="nav-icon">📚</span>Subjects
+                </a></li>
+                <li><a href="grades.html" class="active">
+                    <span class="nav-icon">📝</span>Grades
+                </a></li>
+                <li><a href="analytics.html">
+                    <span class="nav-icon">📈</span>Analytics
+                </a></li>
+                <li><a href="#" onclick="logout()">
+                    <span class="nav-icon">🚪</span>Logout
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
 
-    <div class="container">
-        <!-- Marks Entry Section -->
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">Enter Student Marks</h2>
-                <p>Add or update marks for students</p>
+    <main class="main-content">
+        <!-- Added modern page header with title and breadcrumb -->
+        <header class="page-header">
+            <h1 class="page-title">Grades & Assessment</h1>
+            <p class="page-subtitle">Manage student marks, grades, and academic performance tracking</p>
+            <div class="page-breadcrumb">
+                <span>Home</span>
+                <span class="breadcrumb-separator">›</span>
+                <span>Grades</span>
             </div>
-            
-            <form id="marksForm">
-                <div class="form-group">
-                    <label for="marksStudent" class="form-label">Select Student</label>
-                    <select id="marksStudent" name="student_id" class="form-select" required>
-                        <option value="">Loading students...</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="marksSubject" class="form-label">Select Subject</label>
-                    <select id="marksSubject" name="subject_id" class="form-select" required>
-                        <option value="">Select a student first</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="marks" class="form-label">Marks (0-100)</label>
-                    <input type="number" id="marks" name="marks" class="form-input" min="0" max="100" step="0.01" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="examType" class="form-label">Exam Type</label>
-                    <select id="examType" name="exam_type" class="form-select" required>
-                        <option value="Regular">Regular Exam</option>
-                        <option value="Midterm">Midterm Exam</option>
-                        <option value="Final">Final Exam</option>
-                        <option value="Quiz">Quiz</option>
-                        <option value="Assignment">Assignment</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="examDate" class="form-label">Exam Date</label>
-                    <input type="date" id="examDate" name="exam_date" class="form-input" required>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Save Marks</button>
-            </form>
-        </div>
+        </header>
 
-        <!-- Student Grades View -->
-        <div class="card">
-            <div class="card-header">
-                <div class="flex justify-between align-center">
-                    <h3 class="card-title">Student Grades</h3>
-                    <div class="flex gap-2">
-                        <select id="gradeFilterStudent" class="form-select" onchange="filterGrades()">
-                            <option value="">All Students</option>
-                        </select>
-                        <select id="gradeFilterSubject" class="form-select" onchange="filterGrades()">
-                            <option value="">All Subjects</option>
+        <div class="container">
+            <!-- Marks Entry Section -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Enter Student Marks</h2>
+                    <p>Add or update marks for students</p>
+                </div>
+                
+                <form id="marksForm">
+                    <div class="form-group">
+                        <label for="marksStudent" class="form-label">Select Student</label>
+                        <select id="marksStudent" name="student_id" class="form-select" required>
+                            <option value="">Loading students...</option>
                         </select>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="marksSubject" class="form-label">Select Subject</label>
+                        <select id="marksSubject" name="subject_id" class="form-select" required>
+                            <option value="">Select a student first</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="marks" class="form-label">Marks (0-100)</label>
+                        <input type="number" id="marks" name="marks" class="form-input" min="0" max="100" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="examType" class="form-label">Exam Type</label>
+                        <select id="examType" name="exam_type" class="form-select" required>
+                            <option value="Regular">Regular Exam</option>
+                            <option value="Midterm">Midterm Exam</option>
+                            <option value="Final">Final Exam</option>
+                            <option value="Quiz">Quiz</option>
+                            <option value="Assignment">Assignment</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="examDate" class="form-label">Exam Date</label>
+                        <input type="date" id="examDate" name="exam_date" class="form-input" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Save Marks</button>
+                </form>
+            </div>
+
+            <!-- Student Grades View -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="card-title">Student Grades</h3>
+                        <div class="flex gap-2">
+                            <select id="gradeFilterStudent" class="form-select" onchange="filterGrades()">
+                                <option value="">All Students</option>
+                            </select>
+                            <select id="gradeFilterSubject" class="form-select" onchange="filterGrades()">
+                                <option value="">All Subjects</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Exam Type</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gradesTableBody">
+                            <tr>
+                                <td colspan="7" class="text-center">Loading grades...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Student</th>
-                            <th>Subject</th>
-                            <th>Marks</th>
-                            <th>Grade</th>
-                            <th>Exam Type</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="gradesTableBody">
-                        <tr>
-                            <td colspan="7" class="text-center">Loading grades...</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <!-- Grade Summary by Student -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Grade Summary</h3>
+                    <p>Overall performance by student</p>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Grade Level</th>
+                                <th>Total Subjects</th>
+                                <th>Average Marks</th>
+                                <th>Overall Grade</th>
+                                <th>Rank</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="summaryTableBody">
+                            <tr>
+                                <td colspan="7" class="text-center">Loading summary...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- Grade Summary by Student -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Grade Summary</h3>
-                <p>Overall performance by student</p>
-            </div>
-            
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Student</th>
-                            <th>Grade Level</th>
-                            <th>Total Subjects</th>
-                            <th>Average Marks</th>
-                            <th>Overall Grade</th>
-                            <th>Rank</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="summaryTableBody">
-                        <tr>
-                            <td colspan="7" class="text-center">Loading summary...</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- Edit Marks Modal -->
+        <div id="editMarksModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Marks</h3>
+                    <button class="close-btn" onclick="closeEditMarksModal()">&times;</button>
+                </div>
+                <form id="editMarksForm">
+                    <input type="hidden" id="editMarksId" name="marks_id">
+                    <div class="form-group">
+                        <label class="form-label">Student</label>
+                        <input type="text" id="editStudentName" class="form-input" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <input type="text" id="editSubjectName" class="form-input" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMarks" class="form-label">Marks (0-100)</label>
+                        <input type="number" id="editMarks" name="marks" class="form-input" min="0" max="100" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editExamType" class="form-label">Exam Type</label>
+                        <select id="editExamType" name="exam_type" class="form-select" required>
+                            <option value="Regular">Regular Exam</option>
+                            <option value="Midterm">Midterm Exam</option>
+                            <option value="Final">Final Exam</option>
+                            <option value="Quiz">Quiz</option>
+                            <option value="Assignment">Assignment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editExamDate" class="form-label">Exam Date</label>
+                        <input type="date" id="editExamDate" name="exam_date" class="form-input" required>
+                    </div>
+                    <div class="flex gap-2">
+                        <button type="submit" class="btn btn-primary">Update Marks</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeEditMarksModal()">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
 
-    <!-- Edit Marks Modal -->
-    <div id="editMarksModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Edit Marks</h3>
-                <button class="close-btn" onclick="closeEditMarksModal()">&times;</button>
-            </div>
-            <form id="editMarksForm">
-                <input type="hidden" id="editMarksId" name="marks_id">
-                <div class="form-group">
-                    <label class="form-label">Student</label>
-                    <input type="text" id="editStudentName" class="form-input" readonly>
+        <!-- Student Detail Report Modal -->
+        <div id="studentReportModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Student Grade Report</h3>
+                    <button class="close-btn" onclick="closeStudentReportModal()">&times;</button>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Subject</label>
-                    <input type="text" id="editSubjectName" class="form-input" readonly>
+                <div id="studentReportContent">
+                    <!-- Report content will be loaded here -->
                 </div>
-                <div class="form-group">
-                    <label for="editMarks" class="form-label">Marks (0-100)</label>
-                    <input type="number" id="editMarks" name="marks" class="form-input" min="0" max="100" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="editExamType" class="form-label">Exam Type</label>
-                    <select id="editExamType" name="exam_type" class="form-select" required>
-                        <option value="Regular">Regular Exam</option>
-                        <option value="Midterm">Midterm Exam</option>
-                        <option value="Final">Final Exam</option>
-                        <option value="Quiz">Quiz</option>
-                        <option value="Assignment">Assignment</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="editExamDate" class="form-label">Exam Date</label>
-                    <input type="date" id="editExamDate" name="exam_date" class="form-input" required>
-                </div>
-                <div class="flex gap-2">
-                    <button type="submit" class="btn btn-primary">Update Marks</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeEditMarksModal()">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Student Detail Report Modal -->
-    <div id="studentReportModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Student Grade Report</h3>
-                <button class="close-btn" onclick="closeStudentReportModal()">&times;</button>
-            </div>
-            <div id="studentReportContent">
-                <!-- Report content will be loaded here -->
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="js/auth.js"></script>
     <script src="js/grades.js"></script>
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+    </script>
 </body>
 </html>

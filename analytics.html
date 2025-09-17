@@ -7,189 +7,221 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">School Management System</div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="students.html">Students</a></li>
-                    <li><a href="subjects.html">Subjects</a></li>
-                    <li><a href="grades.html">Grades</a></li>
-                    <li><a href="analytics.html" class="active">Analytics</a></li>
-                    <li><a href="#" onclick="logout()">Logout</a></li>
-                </ul>
-            </nav>
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
+    
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">School Management</div>
+            <div class="sidebar-subtitle">Education System</div>
         </div>
-    </header>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="dashboard.html">
+                    <span class="nav-icon">📊</span>Dashboard
+                </a></li>
+                <li><a href="students.html">
+                    <span class="nav-icon">👥</span>Students
+                </a></li>
+                <li><a href="subjects.html">
+                    <span class="nav-icon">📚</span>Subjects
+                </a></li>
+                <li><a href="grades.html">
+                    <span class="nav-icon">📝</span>Grades
+                </a></li>
+                <li><a href="analytics.html" class="active">
+                    <span class="nav-icon">📈</span>Analytics
+                </a></li>
+                <li><a href="#" onclick="logout()">
+                    <span class="nav-icon">🚪</span>Logout
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
 
-    <div class="container">
-        <!-- Overall Statistics -->
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">School Performance Analytics</h2>
-                <p>Comprehensive analysis of student performance and rankings</p>
+    <main class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Performance Analytics</h1>
+            <p class="page-subtitle">Comprehensive insights into student performance and academic trends</p>
+            <div class="page-breadcrumb">
+                <span>Home</span>
+                <span class="breadcrumb-separator">›</span>
+                <span>Analytics</span>
             </div>
-            
-            <div class="dashboard-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalStudentsAnalytics">0</div>
-                    <div class="stat-label">Total Students</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="totalSubjectsAnalytics">0</div>
-                    <div class="stat-label">Active Subjects</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="overallAverage">0</div>
-                    <div class="stat-label">School Average</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="topPerformers">0</div>
-                    <div class="stat-label">A Grade Students</div>
-                </div>
-            </div>
-        </div>
+        </header>
 
-        <!-- Student Rankings -->
-        <div class="card">
-            <div class="card-header">
-                <div class="flex justify-between align-center">
-                    <h3 class="card-title">Student Rankings</h3>
-                    <select id="gradeFilter" class="form-select" onchange="filterRankings()">
-                        <option value="">All Grade Levels</option>
-                        <option value="9">Grade 9</option>
-                        <option value="10">Grade 10</option>
-                        <option value="11">Grade 11</option>
-                        <option value="12">Grade 12</option>
-                    </select>
+        <div class="container">
+            <!-- Overall Statistics -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">School Performance Analytics</h2>
+                    <p>Comprehensive analysis of student performance and rankings</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalStudentsAnalytics">0</div>
+                        <div class="stat-label">Total Students</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSubjectsAnalytics">0</div>
+                        <div class="stat-label">Active Subjects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="overallAverage">0</div>
+                        <div class="stat-label">School Average</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="topPerformers">0</div>
+                        <div class="stat-label">A Grade Students</div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Student</th>
-                            <th>Grade Level</th>
-                            <th>Total Marks</th>
-                            <th>Average</th>
-                            <th>Grade</th>
-                            <th>Subjects</th>
-                        </tr>
-                    </thead>
-                    <tbody id="rankingsTableBody">
-                        <tr>
-                            <td colspan="7" class="text-center">Loading rankings...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <!-- Subject Performance Analysis -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Subject Performance Analysis</h3>
-                <p>Statistical analysis by subject</p>
+            <!-- Student Rankings -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h3 class="card-title">Student Rankings</h3>
+                        <select id="gradeFilter" class="form-select" onchange="filterRankings()">
+                            <option value="">All Grade Levels</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Student</th>
+                                <th>Grade Level</th>
+                                <th>Total Marks</th>
+                                <th>Average</th>
+                                <th>Grade</th>
+                                <th>Subjects</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankingsTableBody">
+                            <tr>
+                                <td colspan="7" class="text-center">Loading rankings...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Subject</th>
-                            <th>Students</th>
-                            <th>Average</th>
-                            <th>Highest</th>
-                            <th>Lowest</th>
-                            <th>A Grades</th>
-                            <th>Pass Rate</th>
-                        </tr>
-                    </thead>
-                    <tbody id="subjectAnalysisBody">
-                        <tr>
-                            <td colspan="7" class="text-center">Loading subject analysis...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <!-- Grade Distribution -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Grade Distribution</h3>
-                <p>Overall grade distribution across all subjects</p>
+            <!-- Subject Performance Analysis -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Subject Performance Analysis</h3>
+                    <p>Statistical analysis by subject</p>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Students</th>
+                                <th>Average</th>
+                                <th>Highest</th>
+                                <th>Lowest</th>
+                                <th>A Grades</th>
+                                <th>Pass Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subjectAnalysisBody">
+                            <tr>
+                                <td colspan="7" class="text-center">Loading subject analysis...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
-            <div class="dashboard-grid">
-                <div class="stat-card">
-                    <div class="stat-number grade-a" id="gradeACount">0</div>
-                    <div class="stat-label">A Grades (75-100)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number grade-b" id="gradeBCount">0</div>
-                    <div class="stat-label">B Grades (60-74)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number grade-s" id="gradeSCount">0</div>
-                    <div class="stat-label">S Grades (40-59)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number grade-f" id="gradeFCount">0</div>
-                    <div class="stat-label">F Grades (0-39)</div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Class Performance by Grade Level -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Class Performance by Grade Level</h3>
+            <!-- Grade Distribution -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Grade Distribution</h3>
+                    <p>Overall grade distribution across all subjects</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-number grade-a" id="gradeACount">0</div>
+                        <div class="stat-label">A Grades (75-100)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number grade-b" id="gradeBCount">0</div>
+                        <div class="stat-label">B Grades (60-74)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number grade-s" id="gradeSCount">0</div>
+                        <div class="stat-label">S Grades (40-59)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number grade-f" id="gradeFCount">0</div>
+                        <div class="stat-label">F Grades (0-39)</div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Grade Level</th>
-                            <th>Students</th>
-                            <th>Class Average</th>
-                            <th>Highest Average</th>
-                            <th>Lowest Average</th>
-                            <th>Top Student</th>
-                        </tr>
-                    </thead>
-                    <tbody id="classPerformanceBody">
-                        <tr>
-                            <td colspan="6" class="text-center">Loading class performance...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <!-- Performance Trends -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Recent Performance Trends</h3>
-                <p>Latest exam results and improvements</p>
+            <!-- Class Performance by Grade Level -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Class Performance by Grade Level</h3>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Grade Level</th>
+                                <th>Students</th>
+                                <th>Class Average</th>
+                                <th>Highest Average</th>
+                                <th>Lowest Average</th>
+                                <th>Top Student</th>
+                            </tr>
+                        </thead>
+                        <tbody id="classPerformanceBody">
+                            <tr>
+                                <td colspan="6" class="text-center">Loading class performance...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
-            <div id="trendsContent">
-                <div class="form-group">
-                    <h5>Key Insights:</h5>
-                    <ul id="insightsList">
-                        <li>Loading performance insights...</li>
-                    </ul>
+
+            <!-- Performance Trends -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Performance Trends</h3>
+                    <p>Latest exam results and improvements</p>
+                </div>
+                
+                <div id="trendsContent">
+                    <div class="form-group">
+                        <h5>Key Insights:</h5>
+                        <ul id="insightsList">
+                            <li>Loading performance insights...</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="js/auth.js"></script>
     <script src="js/analytics.js"></script>
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+    </script>
 </body>
 </html>

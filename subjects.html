@@ -7,75 +7,102 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">School Management System</div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="students.html">Students</a></li>
-                    <li><a href="subjects.html" class="active">Subjects</a></li>
-                    <li><a href="grades.html">Grades</a></li>
-                    <li><a href="analytics.html">Analytics</a></li>
-                    <li><a href="#" onclick="logout()">Logout</a></li>
-                </ul>
-            </nav>
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
+    
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">School Management</div>
+            <div class="sidebar-subtitle">Education System</div>
         </div>
-    </header>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="dashboard.html">
+                    <span class="nav-icon">📊</span>Dashboard
+                </a></li>
+                <li><a href="students.html">
+                    <span class="nav-icon">👥</span>Students
+                </a></li>
+                <li><a href="subjects.html" class="active">
+                    <span class="nav-icon">📚</span>Subjects
+                </a></li>
+                <li><a href="grades.html">
+                    <span class="nav-icon">📝</span>Grades
+                </a></li>
+                <li><a href="analytics.html">
+                    <span class="nav-icon">📈</span>Analytics
+                </a></li>
+                <li><a href="#" onclick="logout()">
+                    <span class="nav-icon">🚪</span>Logout
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <div class="flex justify-between align-center">
-                    <h2 class="card-title">Subject Management</h2>
-                    <button class="btn btn-primary" onclick="openAddSubjectModal()">Add New Subject</button>
+    <main class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Subject Management</h1>
+            <p class="page-subtitle">Manage academic subjects, course details, and student enrollment</p>
+            <div class="page-breadcrumb">
+                <span>Home</span>
+                <span class="breadcrumb-separator">›</span>
+                <span>Subjects</span>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="flex justify-between align-center">
+                        <h2 class="card-title">Subject Management</h2>
+                        <button class="btn btn-primary" onclick="openAddSubjectModal()">Add New Subject</button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Name</th>
+                                <th>Description</th>
+                                <th>Credits</th>
+                                <th>Enrolled Students</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subjectsTableBody">
+                            <tr>
+                                <td colspan="6" class="text-center">Loading subjects...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Subject Code</th>
-                            <th>Subject Name</th>
-                            <th>Description</th>
-                            <th>Credits</th>
-                            <th>Enrolled Students</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="subjectsTableBody">
-                        <tr>
-                            <td colspan="6" class="text-center">Loading subjects...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Student Enrollment</h3>
-                <p>Enroll students to subjects</p>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Student Enrollment</h3>
+                    <p>Enroll students to subjects</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="enrollStudent" class="form-label">Select Student</label>
+                    <select id="enrollStudent" class="form-select">
+                        <option value="">Loading students...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="enrollSubject" class="form-label">Select Subject</label>
+                    <select id="enrollSubject" class="form-select">
+                        <option value="">Loading subjects...</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-success" onclick="enrollStudent()">Enroll Student</button>
             </div>
-            
-            <div class="form-group">
-                <label for="enrollStudent" class="form-label">Select Student</label>
-                <select id="enrollStudent" class="form-select">
-                    <option value="">Loading students...</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="enrollSubject" class="form-label">Select Subject</label>
-                <select id="enrollSubject" class="form-select">
-                    <option value="">Loading subjects...</option>
-                </select>
-            </div>
-            
-            <button class="btn btn-success" onclick="enrollStudent()">Enroll Student</button>
         </div>
-    </div>
+    </main>
 
     <!-- Add/Edit Subject Modal -->
     <div id="subjectModal" class="modal">
@@ -125,5 +152,10 @@
 
     <script src="js/auth.js"></script>
     <script src="js/subjects.js"></script>
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+    </script>
 </body>
 </html>
