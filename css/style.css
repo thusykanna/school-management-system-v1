@@ -530,6 +530,13 @@ body {
   display: none;
 }
 
+/* Blur background when modal is open */
+.modal-blur > *:not(#logoutModal) {
+  filter: blur(4px) grayscale(0.1);
+  pointer-events: none;
+  user-select: none;
+}
+
 /* Grade Colors */
 .grade-a {
   color: var(--success);

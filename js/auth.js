@@ -109,7 +109,66 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })
 
-// Global logout function
+// Global logout function with custom modal confirmation
 function logout() {
-  authManager.logout()
+  // If modal already exists, don't create another
+  if (document.getElementById('logoutModal')) return;
+
+  // Blur background
+  document.body.classList.add('modal-blur');
+
+  // Create modal overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'logoutModal';
+  overlay.style.position = 'fixed';
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.width = '100vw';
+  overlay.style.height = '100vh';
+  overlay.style.background = 'rgba(0,0,0,0.35)';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+  overlay.style.zIndex = 9999;
+
+  // Modal box
+  const modal = document.createElement('div');
+  modal.style.background = 'var(--white)';
+  modal.style.padding = '2rem 2.5rem';
+  modal.style.borderRadius = '14px';
+  modal.style.boxShadow = '0 8px 32px rgba(0,0,0,0.25)';
+  modal.style.textAlign = 'center';
+  modal.style.maxWidth = '90vw';
+  modal.style.minWidth = '280px';
+
+  const msg = document.createElement('div');
+  msg.textContent = 'Are you sure you want to logout?';
+  msg.style.fontSize = '1.15rem';
+  msg.style.marginBottom = '2rem';
+  msg.style.color = 'rgba(0, 0, 0, 1)';
+  modal.appendChild(msg);
+
+  // Buttons
+  const btnYes = document.createElement('button');
+  btnYes.textContent = 'Logout';
+  btnYes.className = 'btn btn-danger';
+  btnYes.style.marginRight = '1rem';
+  btnYes.onclick = function() {
+    overlay.remove();
+    document.body.classList.remove('modal-blur');
+    authManager.logout();
+  };
+
+  const btnNo = document.createElement('button');
+  btnNo.textContent = 'Cancel';
+  btnNo.className = 'btn btn-secondary';
+  btnNo.onclick = function() {
+    overlay.remove();
+    document.body.classList.remove('modal-blur');
+  };
+
+  modal.appendChild(btnYes);
+  modal.appendChild(btnNo);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
 }
